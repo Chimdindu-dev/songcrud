@@ -1,0 +1,38 @@
+<!-- ./musicapp/templates/song/list.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Song List</title>
+{% endblock title %}
+
+{% block content %}
+    <h1 style="text-align: center; padding-top: 1em; padding-bottom: 1em;">Song Information</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Date released</th>
+                <th scope="col">Likes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for a in song %}
+                <tr>
+                    <th scope="row">{{ a.songname }}</th>
+                    <td>{{ a.songdate }}</td>
+                    <td>{{ a.likes }}</td>
+                    <td>
+                        <a style="margin-right: 30px;" href="{% url 'edit-song' a.id %}">Edit</a>
+                        <a href="{% url 'delete-song' a.id %}">Remove</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        <a href="{% url 'create-song' %}"><button type="button" class="btn btn-primary">Add New Info</button></a>
+    </div>
+{% endblock content %}
